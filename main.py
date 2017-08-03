@@ -40,7 +40,7 @@ def main():
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu_number
 
     with tf.device('/gpu:{0}'.format(gpu_number)):
-        gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.90)
+        gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.80)
         config = tf.ConfigProto(allow_soft_placement=True, gpu_options=gpu_options)
 
         with tf.Session(config=config) as sess:

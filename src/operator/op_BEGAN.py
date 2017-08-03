@@ -68,13 +68,15 @@ class Operator(op_base):
 
     def train(self, train_flag):
         # load data
-        data_path = '{0}/{1}/{2}_{3}'.format(self.data_dir, self.dataset, self.data_size, self.data_opt)
+        # data_path = '{0}/{1}/{2}_{3}'.format(self.data_dir, self.dataset, self.data_size, self.data_opt)
+        data_path = '{0}/{1}/'.format(self.data_dir, self.dataset)
 
-        if os.path.exists(data_path + '.npy'):
-            data = np.load(data_path + '.npy')
+        dataset_file = '{}/{}.npy'.format(self.data_dir, self.dataset)
+        if os.path.exists(dataset_file):
+            data = np.load(dataset_file)
         else:
             data = sorted(glob.glob(os.path.join(data_path, "*.*")))
-            np.save(data_path + '.npy', data)
+            np.save(dataset_file, data)
 
         print('Shuffle ....')
         random_order = np.random.permutation(len(data))
